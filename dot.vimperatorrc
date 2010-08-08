@@ -6,7 +6,14 @@ noremap <silent> <leader>gm  :emenu Bookmarks.Bookmarks Toolbar.GMailThis!<CR>
 
 
 noremap <silent> <leader>del  :emenu Delicious.Save a new Bookmark...<CR>
-set runtimepath=PATH/.vimperator
-source! PATH/.vimperatorrc.local
+
+noremap j 3j
+noremap k 3k
+
+autocmd LocationChange .* :js modes.passAllKeys = /mail\.google\.com|www\.google\.com\/reader\/view/.test(buffer.URL)
+command -nargs=* Google open google 
+
+set runtimepath=/Users/wzhang/.vimperator
+source! /Users/wzhang/.vimperatorrc.local
 
 " vim: set ft=vimperator:
