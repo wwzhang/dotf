@@ -1,0 +1,12 @@
+"2.3.1 (created: 2010/04/07 18:25:13)
+noremap <silent> <leader>read  :emenu Bookmarks.Bookmarks Toolbar.Readability<CR>
+noremap <silent> <leader>paper  :emenu Bookmarks.Bookmarks Toolbar.Open In Papers<CR>
+noremap <silent> <leader>ril  :emenu Bookmarks.Bookmarks Toolbar.Read Later<CR>
+noremap <silent> <leader>gm  :emenu Bookmarks.Bookmarks Toolbar.GMailThis!<CR>
+
+
+noremap <silent> <leader>del  :emenu Delicious.Save a new Bookmark...<CR>
+set runtimepath=/Users/wzhang/.vimperator
+source! /Users/wzhang/.vimperatorrc.local
+
+" vim: set ft=vimperator:
