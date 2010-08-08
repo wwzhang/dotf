@@ -6,7 +6,7 @@ noremap <silent> <leader>gm  :emenu Bookmarks.Bookmarks Toolbar.GMailThis!<CR>
 
 
 noremap <silent> <leader>del  :emenu Delicious.Save a new Bookmark...<CR>
-set runtimepath=/Users/wzhang/.vimperator
-source! /Users/wzhang/.vimperatorrc.local
+set runtimepath=PATH/.vimperator
+source! PATH/.vimperatorrc.local
 
 " vim: set ft=vimperator:
