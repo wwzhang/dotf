@@ -1,4 +1,4 @@
-set imap_user = "wwzhang2@gmail.com"
+set imap_user = "@gmail.com"
 set imap_pass = ""
 
 #set smtp_url = "smtp://@smtp.gmail.com:587/"
