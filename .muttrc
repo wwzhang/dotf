@@ -1,0 +1,28 @@
+set imap_user = "wwzhang2@gmail.com"
+set imap_pass = ""
+
+#set smtp_url = "smtp://@smtp.gmail.com:587/"
+#set smtp_pass = ""
+set from = ""
+set realname = ""
+
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed="+[Gmail]/Drafts"
+
+set header_cache=~/.mutt/cache/headers
+set message_cachedir=~/.mutt/cache/bodies
+set certificate_file=~/.mutt/certificates
+
+set move = no
+set sort = 'threads'
+set sort_aux = 'last-date-received'
+set imap_check_subscribed
+
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+hdr_order Date From To Cc
+
+#msmtp
+set sendmail="/usr/local/bin/msmtp"
