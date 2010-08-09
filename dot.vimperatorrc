@@ -1,8 +1,16 @@
 "2.3.1 (created: 2010/04/07 18:25:13)
-noremap <silent> <leader>read  :emenu Bookmarks.Bookmarks Toolbar.Readability<CR>
-noremap <silent> <leader>paper  :emenu Bookmarks.Bookmarks Toolbar.Open In Papers<CR>
-noremap <silent> <leader>ril  :emenu Bookmarks.Bookmarks Toolbar.Read Later<CR>
-noremap <silent> <leader>gm  :emenu Bookmarks.Bookmarks Toolbar.GMailThis!<CR>
+;;readability
+noremap <silent> <leader>read  :open javascript:(function(){readConvertLinksToFootnotes=false;readStyle='style-novel';readSize='size-medium';readMargin='margin-wide';_readability_script=document.createElement('script');_readability_script.type='text/javascript';_readability_script.src='http://lab.arc90.com/experiments/readability/js/readability.js?x='+(Math.random());document.documentElement.appendChild(_readability_script);_readability_css=document.createElement('link');_readability_css.rel='stylesheet';_readability_css.href='http://lab.arc90.com/experiments/readability/css/readability.css';_readability_css.type='text/css';_readability_css.media='all';document.documentElement.appendChild(_readability_css);_readability_print_css=document.createElement('link');_readability_print_css.rel='stylesheet';_readability_print_css.href='http://lab.arc90.com/experiments/readability/css/readability-print.css';_readability_print_css.media='print';_readability_print_css.type='text/css';document.getElementsByTagName('head')[0].appendChild(_readability_print_css);})();<CR>
+
+
+;;Papers
+noremap <silent> <leader>paper  :open javascript:if(navigator.userAgent.indexOf('Safari')%20%3E=%200){s=getSelection();}else{s=document.selection?document.selection.createRange().text:document.getSelection();}document.location.href='papers://url/'+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title)+'&selectedText='+encodeURIComponent(s);<CR>
+
+;;Instapaper
+noremap <silent> <leader>ril  :open javascript:function%20iprl5(){var%20d=document,z=d.createElement('scr'+'ipt'),b=d.body;try{if(!b)throw(0);d.title='(Saving...)%20'+d.title;z.setAttribute('src','http://www.instapaper.com/j/i4uJRZ3AvsE6?u='+encodeURIComponent(d.location.href)+'&t='+(new%20Date().getTime()));b.appendChild(z);}catch(e){alert('Please%20wait%20until%20the%20page%20has%20loaded.');}}iprl5();void(0);<CR>
+
+;;Gmail this
+noremap <silent> <leader>gm  :open javascript:popw='';Q='';x=document;y=window;if(x.selection)%20{Q=x.selection.createRange().text;}%20else%20if%20(y.getSelection)%20{Q=y.getSelection();}%20else%20if%20(x.getSelection)%20{Q=x.getSelection();}popw%20=%20y.open('https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su='%20+%20escape(document.title)%20+%20'&body='%20+%20escape(Q)%20+%20escape('\n')%20+%20escape(location.href)%20+%20'&zx=RANDOMCRAP&shva=1&disablechatbrowsercheck=1&ui=1','gmailForm','scrollbars=yes,width=680,height=510,top=175,left=75,status=no,resizable=yes');if%20(!document.all)%20T%20=%20setTimeout('popw.focus()',50);void(0);<CR>
 
 
 noremap <silent> <leader>del  :emenu Delicious.Save a new Bookmark...<CR>
@@ -17,6 +25,8 @@ command -nargs=* Google open google
 set nextpattern=\s*下一页|下一张|下一篇|下一頁|下页|后页\s*,^\bnext\b,\bnext\b,\bsuivant \b,^>$,^(>>|››|»)$,^(>|»),(>|»)$,\bmore\b
 set previouspattern=\s*上一页|上一张|上一篇|上一頁|上页|前页\s*,^\bprev|previous\b, \bprev|previous\b,\bprécédent\b,^<$,^(<<|‹‹|«)$,^(<|«),(<|«)$
 " http://pchu.blogbus.com/logs/36870556.html"
+
+
 
 set runtimepath=/Users/wzhang/.vimperator
 source! /Users/wzhang/.vimperatorrc.local
