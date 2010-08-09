@@ -13,6 +13,11 @@ noremap k 3k
 autocmd LocationChange .* :js modes.passAllKeys = /mail\.google\.com|www\.google\.com\/reader\/view/.test(buffer.URL)
 command -nargs=* Google open google 
 
+" 齐全的next和previous……需要注意我在 \bnext\b 前加了一个 ^\bnext\b ，因为比如在SciAm网站，经常match到右上角的“What's next”栏目，而不是文章下方的next链接。先match前缀可以解决这个问题。又，suivant和précédent是法语
+set nextpattern=\s*下一页|下一张|下一篇|下一頁|下页|后页\s*,^\bnext\b,\bnext\b,\bsuivant \b,^>$,^(>>|››|»)$,^(>|»),(>|»)$,\bmore\b
+set previouspattern=\s*上一页|上一张|上一篇|上一頁|上页|前页\s*,^\bprev|previous\b, \bprev|previous\b,\bprécédent\b,^<$,^(<<|‹‹|«)$,^(<|«),(<|«)$
+" http://pchu.blogbus.com/logs/36870556.html"
+
 set runtimepath=/Users/wzhang/.vimperator
 source! /Users/wzhang/.vimperatorrc.local
 
