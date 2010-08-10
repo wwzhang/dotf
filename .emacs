@@ -260,14 +260,3 @@
 (server-start)
 (require 'nav)
 
-;;Jabbel.el
-;; (load "jabber-autoloads")
-;; (require 'jabber)
-;; (setq jabber-account-list '(
-;;                             ("wwzhang@gmail.com"
-;;                             ;;   (:password . nil) or (:password . "your-pass")
-;;                               (:network-server . "talk.google.com")
-;;                               (:port . 443)
-;;                               (:connection-type . ssl))
-;;                             ))
-
