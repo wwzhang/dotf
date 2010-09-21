@@ -17,16 +17,16 @@ noremap <silent> <leader>ril  :open javascript:function%20iprl5(){var%20d=docume
 noremap <silent> <leader>gm  :open javascript:popw='';Q='';x=document;y=window;if(x.selection)%20{Q=x.selection.createRange().text;}%20else%20if%20(y.getSelection)%20{Q=y.getSelection();}%20else%20if%20(x.getSelection)%20{Q=x.getSelection();}popw%20=%20y.open('https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su='%20+%20escape(document.title)%20+%20'&body='%20+%20escape(Q)%20+%20escape('\n')%20+%20escape(location.href)%20+%20'&zx=RANDOMCRAP&shva=1&disablechatbrowsercheck=1&ui=1','gmailForm','scrollbars=yes,width=680,height=510,top=175,left=75,status=no,resizable=yes');if%20(!document.all)%20T%20=%20setTimeout('popw.focus()',50);void(0);<CR>
 
 " "Delicious bookmark
-noremap <silent> <leader>del  :emenu Delicious.Save a new Bookmark...<CR>
+noremap <silent> <leader>del  :open javascript:(function(){f='http://www.delicious.com/save?url='+encodeURIComponent(window.location.href)+'&title='+encodeURIComponent(document.title)+'&v=5&';a=function(){if(!window.open(f+'noui=1&jump=doclose','deliciousuiv5','location=yes,links=no,scrollbars=no,toolbar=no,width=550,height=550'))location.href=f+'jump=yes'};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})();<CR>
 
 " Make the RSS feed icon show in the vimperator status bar
 javascript <<EOF
 (function(){
-    var feedPanel = document.createElement("statusbarpanel");
-    feedPanel.setAttribute("id", "feed-panel-clone");
-    feedPanel.appendChild(document.getElementById("feed-button"));
-    feedPanel.firstChild.setAttribute("style", "padding: 0; max-height: 16px;");
-    document.getElementById("status-bar").insertBefore(feedPanel, document.getElementById("security-button"));
+	    var feedPanel = document.createElement("statusbarpanel");
+	        feedPanel.setAttribute("id", "feed-panel-clone");
+		    feedPanel.appendChild(document.getElementById("feed-button"));
+		        feedPanel.firstChild.setAttribute("style", "padding: 0; max-height: 16px;");
+			    document.getElementById("status-bar").insertBefore(feedPanel, document.getElementById("security-button"));
 })();
 EOF
 
@@ -66,3 +66,4 @@ set runtimepath=/Users/wzhang/.vimperator
 source! /Users/wzhang/.vimperatorrc.local
 
 " vim: set ft=vimperator:
+
