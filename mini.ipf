@@ -45,10 +45,29 @@ Function MiniAverage()
        edit eve_nums, amp_ave, amp_SD, amp_Ci1, amp_Ci2, rise_ave, rise_SD, rise_Ci1, rise_Ci2, half_ave, half_SD, half_Ci1, half_Ci2, freq_ave, freq_SD, freq_Ci1, freq_Ci2, all_freq as "Averages"; 
 End
 
+Function amp_histo_plot()
+	Make/N=200/O Amp_Histo;DelayUpdate;
+	Histogram/B={0,2,200} Amp,Amp_Histo;
+	display Amp_Histo; DelayUpdate; ModifyGraph mode=5;
+End
+
+
+Function All_para()
+	Make/O/N=1 eve_nums; 
+	Make/O/N=1 amp_ave, amp_SD, amp_Ci1, amp_Ci2;
+	Make/O/N=1 rise_ave, rise_SD, rise_Ci1, rise_Ci2;
+	Make/O/N=1 half_ave, half_SD, half_Ci1, half_Ci2;
+	Make/O/N=1 freq_ave, freq_SD, freq_Ci1, freq_Ci2;
+	Make/O/N=1 all_freq;
+	Make/T/N=1 fn;
+	
+	edit eve_nums, amp_ave, amp_SD, amp_Ci1, amp_Ci2, rise_ave, rise_SD, rise_Ci1, rise_Ci2, half_ave, half_SD, half_Ci1, half_Ci2, freq_ave, freq_SD, freq_Ci1, freq_Ci2, all_freq, fn as "Averages";
+END
+
 Function Histo_cal_all()
 	//cumulative plot of amp
 	Make/N=200/O W_Hist_amp;DelayUpdate;
-	Histogram/CUM/B={0,2,200} Amp_all,W_Hist_amp;
+	Histogram/CUM/B={0,2,200} Amp_all,W_Hist_amp; //this is 2pA bin, 2*200 pA max
 	//cumulative plot of isi
 	Make/N=400/O W_Hist_isi;DelayUpdate;
 	Histogram/CUM/B={0,0.02,400} isi_all,W_Hist_isi;
@@ -107,14 +126,20 @@ Function formatgroupplot()
 End
 
 Function displaymini()
-	Display 'Current-1-0001 (A)'[0,299] vs 'Time-0000 (s)';
+	Wave 'Current-1-0001 (A)', 'Time-0000 (s)';
+	'Current-1-0001 (A)' = 'Current-1-0001 (A)' * 1E12; //from A to pA
+	'Time-0000 (s)' = 'Time-0000 (s)' *1E3
+	Display 'Current-1-0001 (A)' vs 'Time-0000 (s)';
+	Label left "Amplitude (pA)"; DelayUpdate; Label bottom "Time (ms)"
+	showinfo;
+	//showtools/A arrow;
 
 End
 
 Function Fitmini()
 	CurveFit/M=2/W=0 exp, 'Current-1-0001 (A)'[pcsr(A),pcsr(B)]/X='Time-0000 (s)'[pcsr(A),pcsr(B)]/D;
 	Wave W_coef;
-	Print "Decay is", 1000/W_coef[2];
+	Print "Decay is", 1/W_coef[2];
 End
 
 Function AP()
@@ -158,16 +183,30 @@ Function AP()
 	SetAxis bottom 0,0.25;
 End
 
+Function AP_stats()
+	Make/O/N=1 eve_nums; 
+	Make/O/N=1 rise_ave, rise_SD, rise_Ci1, rise_Ci2;
+	Make/O/N=1 half_ave, half_SD, half_Ci1, half_Ci2;
+	Make/O/N=1 freq_ave, freq_SD, freq_Ci1, freq_Ci2;
+	Make/O/N=1 all_freq;
+	make/T/N=1 fn;
+	
+	edit eve_nums, rise_ave, rise_SD, rise_Ci1, rise_Ci2, half_ave, half_SD, half_Ci1, half_Ci2, freq_ave, freq_SD, freq_Ci1, freq_Ci2, all_freq, fn as "averages";
+End
+
 Menu "Macros"
 //	Submenu Mini
 //	End
 	"ChangeName", ChangeName();
 	"MiniAverage", MiniAverage();
 	"Cumulative distribution individual", Histo_per();
+	"Make Parameters Table of sIPSC", All_para();
+	"Show me the Amp Distribution", amp_histo_plot();
 	"Cumulative Plots All Data", Histo_cal_all();
 	"Format Figues", Format_figs();
 	"Format Groups Plots", formatgroupplot();
 	"AP plot", AP();
+	"AP stats names", AP_stats();
 	Submenu "Fitting"	
 		"Display mini", displaymini();
 		"Fit Mini-Events", fitmini();
