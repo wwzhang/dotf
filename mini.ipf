@@ -791,6 +791,25 @@ do
 while(1)
 end
 
+Function MergeSelectedtoCurrent()
+ 
+	string theCmd
+	variable refNum, ic, nExp
+ 
+	Open/D/R/MULT=1/F="Igor Prop Experiments (*.pxp):.pxp;"/M="Select experiments to merge" refNum
+	if (strlen(S_filename)==0)
+		return 0
+	endif
+ 
+	nExp = ItemsInList(S_filename,"\r")
+	for (ic=0;ic<nExp;ic+=1)
+		sprintf theCmd, "MERGEEXPERIMENT %s", StringFromList(ic,S_filename,"\r")
+		Execute/P/Q theCmd
+	endfor
+ 
+	return 0
+end
+
 //////////////////////////////////////////////////////////////////
 ///Yichang
 function yichang() //calculate static-state current
@@ -854,6 +873,7 @@ Menu "Macros"
 End
 
 Menu "Utility"
+	"Merge Experiments", MergeSelectedtoCurrent()
 	"Kill graph and table", kill_graphs_and_tables()
 	"Make Panel", MakePanel()
 	"Folder list panel (wave lista)", Folder_Selector()
