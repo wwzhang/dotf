@@ -569,7 +569,7 @@ Function PSC_quik_figs()
 
 	setdatafolder root:$(group_1); display /N=amp amp_ave vs root:$x_1;  
 	setdatafolder root:$(group_2); appendtograph amp_ave vs root:$x_2; 
-	TextBox/B=1/A=LB/F=0 "$(group_1)"; TextBox/B=1/A=RB/F=0 "$group_2"; Label left "Amplitude (pA)"; SetAxis left 0,50; Style_group() 
+	TextBox/B=1/A=LB/F=0 group_1; TextBox/B=1/A=RB/F=0 group_2; Label left "Amplitude (pA)"; SetAxis left 0,50; Style_group() 
 
 //	setdatafolder root:$(group_1); display /N =I_frequency freq_ave vs root:$x_1; 
 //	setdatafolder root:$(group_2); appendtograph freq_ave vs root:$x_2; 
@@ -577,16 +577,16 @@ Function PSC_quik_figs()
 	
 	setdatafolder root:$(group_1); display /N=frequency all_freq vs root:$x_1; 
 	setdatafolder root:$(group_2); appendtograph all_freq vs root:$x_2; 
-	TextBox/B=1/A=LB/F=0 "$group_1"; TextBox/B=1/A=RB/F=0 "$group_2"; Label left "Frequency (Hz)"; SetAxis left 0,10; Style_group()
+	TextBox/B=1/A=LB/F=0 group_1; TextBox/B=1/A=RB/F=0 group_2; Label left "Frequency (Hz)"; SetAxis left 0,10; Style_group()
 
 
 	setdatafolder root:$(group_1); display /N=rise rise_ave vs root:$x_1; 
 	setdatafolder root:$(group_2); appendtograph rise_ave vs root:$x_2; 
-	TextBox/B=1/A=LB/F=0 "$group_1"; TextBox/B=1/A=RB/F=0 "$group_2"; Label left "Rise Time (ms)"; SetAxis left 0,1; Style_group()
+	TextBox/B=1/A=LB/F=0 group_1; TextBox/B=1/A=RB/F=0 group_2; Label left "Rise Time (ms)"; SetAxis left 0,1; Style_group()
 
 	setdatafolder root:$(group_1); display /N=half_width half_ave vs root:$x_1; 
 	setdatafolder root:$(group_2); appendtograph half_ave vs root:$x_2; 
-	TextBox/B=1/A=LB/F=0 "$group_1"; TextBox/B=1/A=RB/F=0 "$group_2"; Label left "Half-Width (ms)"; SetAxis left 0,5; Style_group()
+	TextBox/B=1/A=LB/F=0 group_1; TextBox/B=1/A=RB/F=0 group_2; Label left "Half-Width (ms)"; SetAxis left 0,5; Style_group()
 	
 	
 End
