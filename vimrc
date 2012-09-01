@@ -1,11 +1,16 @@
+filetype off 
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
 set showmode
+
 set showcmd
 set ruler
 set number
 "#set mouse=a
 set ffs=unix,mac,dos 
-filetype indent on  
-filetype plugin on
+"filetype indent on  
+"filetype plugin on
 syntax on 
 set report=0
 set showmatch
@@ -17,9 +22,9 @@ set encoding=utf-8
 set wildmode=list:longest,full
 "set nomodeline
 set modelines=5
-filetype on
-filetype plugin on
-filetype indent on
+"filetype on
+"filetype plugin on
+"filetype indent on
 set grepprg=grep\ -nH\ $*
 let IspellLang = 'english'
 let PersonalDict = '~/.ispell_' . IspellLang
@@ -32,9 +37,9 @@ set background=dark
 "set term=builtin_beos-ansi
 "set term=xterm-color
 colorscheme vividchalk 
-if version >= 603
-	set helplang=cn
-endif
+"if version >= 603
+"	set helplang=cn
+"endif
 set gfn=Monaco:h12
 set columns=100
 set wildmode=list:full
@@ -47,4 +52,3 @@ set spell
 
 set wildmenu
 set wildmode=list:longest
-""set filetype plugin on
