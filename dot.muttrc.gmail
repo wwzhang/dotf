@@ -1,15 +1,17 @@
 set imap_user = "@gmail.com"
-set imap_pass = ""
+#set imap_pass=$my_pw
+#set smtp_pass=$my_pw
+set imap_pass=
 
 #set smtp_url = "smtp://@smtp.gmail.com:587/"
-#set smtp_pass = ""
-set from = ""
+set from = "@gmail.com"
 set realname = ""
 
 set folder = "imaps://imap.gmail.com:993"
 set spoolfile = "+INBOX"
 set postponed="+[Gmail]/Drafts"
 
+set header_cache = yes
 set header_cache=~/.mutt/cache/headers
 set message_cachedir=~/.mutt/cache/bodies
 set certificate_file=~/.mutt/certificates
@@ -24,5 +26,20 @@ ignore "DomainKey-Signature:"
 ignore "DKIM-Signature:"
 hdr_order Date From To Cc
 
-#msmtp
+set editor=vim
+
+#urlview
+macro index cb |urlview 'call urlview to extract URLs out of a message'
+macro pager cb |urlview 'call urlview to extract URLs out of a message'
+
+
+# 采用msmtp发送邮件
 set sendmail="/usr/local/bin/msmtp"
+
+source ~/.mutt/mutt_colors
+set arrow_cursor
+set signature="/usr/local/bin//fortune -s|"
+#
+#goobook for contacts in gmail
+set query_command="goobook query '%s'"
+bind editor <Tab> complete-query
