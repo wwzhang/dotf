@@ -10,6 +10,7 @@ set realname = ""
 set folder = "imaps://imap.gmail.com:993"
 set spoolfile = "+INBOX"
 set postponed="+[Gmail]/Drafts"
+set imap_keepalive =  240
 
 set header_cache = yes
 set header_cache=~/.mutt/cache/headers
